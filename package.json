@@ -1,26 +1,15 @@
 {
-	"name": "AngularFun",
-	"description": "AngularJS Reference Architecture",
-	"version": "2.1.5",
+	"name": "bobswitch-angular",
+	"description": "Frontend for bobswitch created with angularjs",
+	"version": "0.1.0",
 	"author": {
-		"name": "Cary Landholt",
-		"email": "cary@landholt.com",
-		"url": "https://github.com/CaryLandholt"
+		"name": "Richard Martin",
+		"email": "bobthekingofegypt@googlemail.com",
+		"url": "http://bobstuff.org"
 	},
-	"contributors": [
-		{
-			"name": "David Bochenski",
-			"email": "david@bochenski.co.uk",
-			"url": "https://github.com/Bochenski"
-		}, {
-			"name": "Jan Philipp",
-			"email": "knallisworld@googlemail.com",
-			"url": "https://github.com/knalli"
-		}
-	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/CaryLandholt/AngularFun.git"
+		"url": "https://"
 	},
 	"dependencies": {
 		"coffee-script": "~1.6.3",
