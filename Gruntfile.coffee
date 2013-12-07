@@ -71,7 +71,7 @@ module.exports = (grunt) ->
                 ]
                 options:
                     indentation:
-                        value: 1
+                        value: 4
                     max_line_length:
                         level: 'ignore'
                     no_tabs:
@@ -236,7 +236,7 @@ module.exports = (grunt) ->
                     browsers: [
                         'PhantomJS'
                     ]
-                    captureTimeout: 5000
+                    captureTimeout: 15000
                     colors: true
                     files: [
                         'dist/scripts/libs/angular.js'
@@ -252,7 +252,7 @@ module.exports = (grunt) ->
                     junitReporter:
                         outputFile: 'test-results.xml'
                     keepalive: false
-                    logLevel: 'INFO'
+                    logLevel: 'DEBUG'
                     port: 9876
                     preprocessors:
                         '**/*.coffee': 'coffee'
