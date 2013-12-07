@@ -1,8 +1,13 @@
 class Controller
-    constructor: (@$log, @gitHubService, @chatSocketService) ->
-        @search = (searchTerm) =>
-            @chatSocketService.emit "HELP"
-            @gitHubService.get(searchTerm).then (results) =>
-                @repos = results
+    constructor: ($rootScope, @$scope, @$log, @gitHubService, @chatSocketService) ->
+        @$scope.messages = ['BOBBY']
 
-angular.module('app').controller 'gitHubController', ['$log', 'gitHubService', 'chatSocketService', Controller]
+        @chatSocketService.on "chat:message", (message) =>
+            @$scope.messages.push message
+
+        @search = (searchTerm) =>
+            @chatSocketService.emit "chat:message", searchTerm
+
+
+
+angular.module('app').controller 'gitHubController', ['$rootScope', '$scope', '$log', 'gitHubService', 'chatSocketService', Controller]

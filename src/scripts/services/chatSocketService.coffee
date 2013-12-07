@@ -1,12 +1,13 @@
 class Service
-    constructor: (@log, @$window) ->
+    constructor: (@$rootScope, @$log, @$window) ->
         @listeners = {}
 
-        @sock = new @$window.SockJS('http://localhost:8080/chat')
+        @sock = new @$window.SockJS('http://localhost:8080/bobswitch')
         @sock.onopen = () =>
-            @log.info "Socket connection created"
+            @$log.info "Socket connection created"
 
         @sock.onmessage = (message) =>
+            console.log("WTF")
             @onmessage message
 
     on: (event, callback) ->
@@ -16,11 +17,14 @@ class Service
         @listeners[event].push(callback)
 
     onmessage: (message) ->
-        if message.type == "event"
-            if @listeners[message.name]
-                eventListeners = @listeners[message.name]
+        data = angular.fromJson message.data
+        if data.type == "event"
+            if @listeners[data.name]
+                eventListeners = @listeners[data.name]
 
-                listener() for listener in eventListeners
+                for listener in eventListeners
+                    @$rootScope.$apply ->
+                        listener.apply(@sock, [data.message])
 
     emit: (event, message) ->
         @sock.send angular.toJson {
@@ -29,4 +33,4 @@ class Service
             'message': message
         }
 
-angular.module('app').service 'chatSocketService', ['$log', '$window', Service]
+angular.module('app').service 'chatSocketService', ['$rootScope', '$log', '$window', Service]
