@@ -1,9 +1,12 @@
 <section ng-controller="gitHubController as controller">
+    <form class="well form-search" ng-show="lurker" ng-submit="open()">
+        <button type="submit" class="btn">Join</button>
+    </form>
     <div id="chat-messages">
         <p ng-repeat="message in messages track by $index">{{message}}</p>
     </div>
 
-    <form class="well form-search" ng-submit="controller.search(searchTerm)">
+    <form class="well form-search" ng-hide="lurker" ng-submit="controller.search(searchTerm)">
         <input type="text" class="input-medium search-query" ng-model="searchTerm" />
         <button type="submit" class="btn"><i class="glyphicon glyphicon-search"></i> Search</button>
     </form>

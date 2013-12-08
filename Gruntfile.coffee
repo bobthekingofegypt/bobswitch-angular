@@ -111,6 +111,11 @@ module.exports = (grunt) ->
                     dest: '.temp/scripts/libs/'
                     expand: true
                 ,
+                    cwd: 'bower_components/angular-cookies/'
+                    src: 'angular-cookies.*'
+                    dest: '.temp/scripts/libs/'
+                    expand: true
+                ,
                     cwd: 'bower_components/angular-mocks/'
                     src: 'angular-mocks.*'
                     dest: '.temp/scripts/libs/'
@@ -118,6 +123,11 @@ module.exports = (grunt) ->
                 ,
                     cwd: 'bower_components/angular-route/'
                     src: 'angular-route.*'
+                    dest: '.temp/scripts/libs/'
+                    expand: true
+                ,
+                    cwd: 'bower_components/angular-bootstrap/'
+                    src: 'ui-bootstrap-tpls.*'
                     dest: '.temp/scripts/libs/'
                     expand: true
                 ,
@@ -371,6 +381,8 @@ module.exports = (grunt) ->
                     '!libs/angular.{coffee,js}'
                     '!libs/angular-animate.{coffee,js}'
                     '!libs/angular-route.{coffee,js}'
+                    '!libs/angular-cookie.{coffee,js}'
+                    '!libs/ui-bootstrap-tpls.{coffee,js}'
                     '!libs/html5shiv-printshiv.{coffee,js}'
                     '!libs/json3.min.{coffee,js}'
                     '!libs/require.{coffee,js}'
@@ -381,6 +393,8 @@ module.exports = (grunt) ->
                         'ngAnimate': 'libs/angular-animate.min.js'
                         'ngMockE2E': 'libs/angular-mocks.js'
                         'ngRoute': 'libs/angular-route.min.js'
+                        'ngCookies': 'libs/angular-cookies.min.js'
+                        'ui.bootstrap': 'libs/ui-bootstrap-tpls.min.js'
                 ]
                 require: 'NGBOOTSTRAP'
             prod:
