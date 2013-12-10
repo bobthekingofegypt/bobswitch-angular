@@ -1,33 +1,45 @@
 class Controller
-    constructor: ($rootScope, @$cookies, @$scope, @$log, @gitHubService, @chatSocketService, $modal) ->
+    constructor: (@playersService, @messageService, @$cookies, @$scope, @$log, @gitHubService, @chatSocketService, $modal) ->
         @$scope.lurker = true
         @$scope.input = {}
-        @$scope.messages = ['Welcome to bobswitch']
+        @$scope.messages = [{ text: 'Welcome to bobswitch' }]
+        @$scope.players = []
 
-        @chatSocketService.on "chat:message", (message) =>
-            @$scope.messages.push message
+        @messageService.subscribe "player-added", (name, parameters) =>
+            @$scope.players = parameters.players
+
+        @messageService.subscribe "players-updated", (name, parameters) =>
+            @$scope.players = parameters.players
+
+        @chatSocketService.on "players:listing", (message) =>
+            console.log(message)
+            
+
+        @chatSocketService.emit "account:listing", ""
+
+        @chatSocketService.on "chat:message", (data) =>
+            @$scope.messages.push data
+            #@$scope.messages.push { name: "Bob", text: message }
 
         @search = (searchTerm) =>
             @chatSocketService.emit "chat:message", searchTerm
 
         @$scope.open = =>
-            console.log "HELLO"
             @modalInstance = $modal.open({
                 templateUrl: '/views/login-modal.html',
-                scope: @$scope,
-                resolve: {
-                    items: => return ["test", "test2"]
-                }
+                scope: @$scope
             })
 
-            @modalInstance.result.then( =>
+            @modalInstance.result.then =>
                 @$cookies.name = $scope.input.name
                 @chatSocketService.emit "account:login", @$scope.input.name
+                #@playersService.addPlayer $scope.input.name
+
+                #@chatSocketService.emit "account:listing", ""
+
                 @$scope.lurker = false
-                console.log "wooo " + @$scope.input.name
             , =>
                 @$log.info('Modal dismissed at: ' + new Date())
-            )
 
         @$scope.ok = =>
             @modalInstance.close()
@@ -36,4 +48,4 @@ class Controller
             @modalInstance.dismiss()
 
 
-angular.module('app').controller 'gitHubController', ['$rootScope', '$cookies', '$scope', '$log', 'gitHubService', 'chatSocketService', '$modal', Controller]
+angular.module('app').controller 'gitHubController', ['playersService', 'messageService', '$cookies', '$scope', '$log', 'gitHubService', 'chatSocketService', '$modal', Controller]

@@ -1,2 +1,254 @@
 @import "bootstrap.less";
 
+html, body {
+    height: 100%;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.ng-cloak {
+}
+
+.contner {
+    display: table; // Needed
+    width: 100%;
+    height: 100%; // Needed
+}
+.ro {
+    display: table-row; // Needed
+}
+.sidebar,
+.cener {
+    display: table-cell; // Needed
+}
+.sidebar {
+    border-left: 1px #293037 solid;
+    width: 320px;
+    background: #fff url('../images/dark-background-patt.png') repeat;
+}
+.cener {
+    text-align: center;
+    background: #fff url('../images/background-patt.png') repeat;
+}
+
+.sidebar #players {
+    height: 240px;
+}
+
+.sidebar .player {
+    padding: 14px 10px 0 10px;
+}
+
+.sidebar .player img {
+    float: left;
+    margin-right: 20px;
+    width: 60px;
+    height: 48px;
+}
+
+.sidebar .player h1 {
+    margin: 0;
+    margin-top: 7px;
+    padding: 0;
+    color: #fff;
+    font: 15pt ariel;
+}
+
+.sidebar .player span {
+    color: #8596a7;
+    font: 11pt ariel;
+    margin-right: 20px;
+}
+
+#chat .messages {
+    width: 300px;
+    margin: 20px 0 0 10px;
+    padding: 4px;
+    height: 430px;
+    background-image: url('../images/chat-back.png');
+    background-repeat: repeat;
+}
+
+#chat .messages p {
+    color: #fff;
+    padding: 0;
+    margin: 0;
+}
+
+#chat .messages p span {
+    color: #8899aa;
+}
+
+#chat .message {
+    background-image: url('../images/chat-back.png');
+    background-repeat: repeat;
+    width: 300px;
+    margin: 0 0 0 10px;
+    height: 30px;
+    border-top: 1px #293037 solid;
+    padding-top: 6px;
+}
+
+#chat .message span {
+    color: #8596a7;
+    font: 14pt sans-serif;
+    padding-left: 10px;
+}
+
+#test {
+position: relative;
+    width: 690px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+    
+#game {
+    position: relative;
+    background-color: #0f0;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.playingCards {
+}
+
+#playerOne {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    position: absolute;
+    left: 130px;
+    top: -20px; 
+    width: 440px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#playerOneCards {
+    position: relative;
+    width: 320px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+#playerTwo{
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    position: absolute;
+    left: 410px;
+    top: 260px; 
+    width: 440px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#playerTwoCards {
+    position: relative;
+    width: 320px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+#playerThree {
+    position: absolute;
+    left: 130px;
+    top: 530px; 
+    width: 440px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#playerThreeCards {
+    position: relative;
+    width: 320px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+#playerFour {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    position: absolute;
+    left: -160px;
+    top: 260px; 
+    width: 440px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#playerFourCards {
+    position: relative;
+    width: 320px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+.card {
+    position: absolute;
+}
+
+.playingCards :nth-child(1)  { left: 0; }
+.playingCards :nth-child(2)  { left: 1.3em; }
+.playingCards :nth-child(3)  { left: 2.6em; }
+.playingCards :nth-child(4)  { left: 3.9em; }
+.playingCards :nth-child(5)  { left: 5.2em; }
+.playingCards :nth-child(6)  { left: 6.5em; }
+.playingCards :nth-child(7)  { left: 7.8em; }
+.playingCards :nth-child(8)  { left: 9.1em; }
+.playingCards :nth-child(9)  { left: 10.4em; }
+.playingCards :nth-child(10) { left: 11.7em; }
+.playingCards :nth-child(11) { left: 13.0em; }
+.playingCards :nth-child(12) { left: 14.3em; }
+.playingCards :nth-child(13) { left: 15.6em; }
+.playingCards :nth-child(14) { left: 16.9em; }
+.playingCards :nth-child(15) { left: 18.2em; }
+.playingCards :nth-child(16) { left: 19.5em; }
+.playingCards :nth-child(17) { left: 17.6em; }
+.playingCards :nth-child(18) { left: 18.7em; }
+.playingCards :nth-child(19) { left: 19.8em; }
+.playingCards :nth-child(20) { left: 20.9em; }
+.playingCards :nth-child(21) { left: 22.0em; }
+.playingCards :nth-child(22) { left: 23.1em; }
+.playingCards :nth-child(23) { left: 24.2em; }
+.playingCards :nth-child(24) { left: 24.3em; }
+
+#deck {
+    left: 250px;
+    top: 250px;
+}
+#stack {
+    left: 370px;
+    top: 250px;
+}
+
+#playerOneName {
+    font: 9pt sans-serif;
+    text-align: center;
+    position: absolute;
+    left: 140px;
+    top: 120px;
+    color: #fff;
+    width: 400px;
+    height: 30px;
+}
+
+#playerOneName span {
+    padding-left: 10px;
+}
+
+#playerOneName img {
+    vertical-align: middle;
+}
+
+.input-mysize { width: 280px }

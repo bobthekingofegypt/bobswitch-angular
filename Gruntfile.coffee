@@ -121,6 +121,11 @@ module.exports = (grunt) ->
                     dest: '.temp/scripts/libs/'
                     expand: true
                 ,
+                    cwd: 'bower_components/angular-ui-utils/modules/keypress/'
+                    src: 'keypress.js'
+                    dest: '.temp/scripts/libs/'
+                    expand: true
+                ,
                     cwd: 'bower_components/angular-route/'
                     src: 'angular-route.*'
                     dest: '.temp/scripts/libs/'
@@ -395,6 +400,7 @@ module.exports = (grunt) ->
                         'ngRoute': 'libs/angular-route.min.js'
                         'ngCookies': 'libs/angular-cookies.min.js'
                         'ui.bootstrap': 'libs/ui-bootstrap-tpls.min.js'
+                        'ui.keypress': 'libs/keypress.js'
                 ]
                 require: 'NGBOOTSTRAP'
             prod:
