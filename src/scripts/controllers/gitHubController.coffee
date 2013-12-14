@@ -1,5 +1,6 @@
 class Controller
-    constructor: (@playersService, @messageService, @$cookies, @$scope, @$log, @gitHubService, @chatSocketService, $modal) ->
+    constructor: (@messageService, @$cookies, @$scope, @$log, @chatSocketService, $modal) ->
+        #lurker just means you haven't yet added a user name
         @$scope.lurker = true
         @$scope.input = {}
         @$scope.messages = [{ text: 'Welcome to bobswitch' }]
@@ -8,21 +9,11 @@ class Controller
         @messageService.subscribe "player-added", (name, parameters) =>
             @$scope.players = parameters.players
 
-        @messageService.subscribe "players-updated", (name, parameters) =>
-            @$scope.players = parameters.players
-
-        @chatSocketService.on "players:listing", (message) =>
-            console.log(message)
-            
-
-        @chatSocketService.emit "account:listing", ""
-
         @chatSocketService.on "chat:message", (data) =>
             @$scope.messages.push data
-            #@$scope.messages.push { name: "Bob", text: message }
 
-        @search = (searchTerm) =>
-            @chatSocketService.emit "chat:message", searchTerm
+        @sendMessage = (message) =>
+            @chatSocketService.emit "chat:message", message
 
         @$scope.open = =>
             @modalInstance = $modal.open({
@@ -33,9 +24,6 @@ class Controller
             @modalInstance.result.then =>
                 @$cookies.name = $scope.input.name
                 @chatSocketService.emit "account:login", @$scope.input.name
-                #@playersService.addPlayer $scope.input.name
-
-                #@chatSocketService.emit "account:listing", ""
 
                 @$scope.lurker = false
             , =>
@@ -48,4 +36,12 @@ class Controller
             @modalInstance.dismiss()
 
 
-angular.module('app').controller 'gitHubController', ['playersService', 'messageService', '$cookies', '$scope', '$log', 'gitHubService', 'chatSocketService', '$modal', Controller]
+angular.module('app').controller 'gitHubController', [
+    'messageService',
+    '$cookies',
+    '$scope',
+    '$log',
+    'chatSocketService',
+    '$modal',
+    Controller
+]

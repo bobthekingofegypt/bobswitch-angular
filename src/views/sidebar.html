@@ -18,8 +18,8 @@
             <p ng-repeat="message in messages track by $index"><span ng-if="message.name">{{ message.name }}:</span> {{message.text}}</p>
         </div>
         <div class="message">
-            <form class=""  ui-keypress="{13:'controler.search(searchTerm)'}" ng-submit="controller.search(searchTerm)">
-                <input type="text" placeholder="Enter text here" class="input-mysize" ng-model="searchTerm" />
+            <form class=""  ui-keypress="{13:'controller.sendMessage(message)'}">
+                <input type="text" placeholder="Enter text here" class="input-mysize" ng-model="message" />
     </form>
         </div>
 

@@ -8,6 +8,8 @@ class Service
         @socketService.on "players:added", (message) =>
             @addPlayer message
 
+        @socketService.emit "account:listing", ""
+
 
     addPlayer: (name) ->
         @players.push {

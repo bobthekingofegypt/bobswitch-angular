@@ -17,6 +17,7 @@ describe "chatSocketService", ->
 
         inject (_chatSocketService_) ->
             service = _chatSocketService_
+            service.block = false
 
     it 'should call callback on recieving a message', ->
         callback = jasmine.createSpy("on bob event callback")
@@ -24,11 +25,13 @@ describe "chatSocketService", ->
         service.on("bob", callback)
 
         sockjsSpy.onmessage({
-            'type': 'event',
-            'name': 'bob',
-            'message': 'message goes here'
+            "data" : '{
+                "type": "event",
+                "name": "bob",
+                "message": "message goes here"
+            }'
         })
-
+        
         expect(callback).toHaveBeenCalled()
         
     it 'should call multiple callbacks when registered against a single event', ->
@@ -39,9 +42,11 @@ describe "chatSocketService", ->
         service.on("bob", callbackTwo)
 
         sockjsSpy.onmessage({
-            'type': 'event',
-            'name': 'bob',
-            'message': 'message goes here'
+            "data" : '{
+                "type": "event",
+                "name": "bob",
+                "message": "message goes here"
+            }'
         })
 
         expect(callbackOne).toHaveBeenCalled()
