@@ -6,6 +6,7 @@ class Service
             @addPlayer name for name in names
 
         @socketService.on "players:added", (message) =>
+            console.log("on players added")
             @addPlayer message
 
         @socketService.emit "account:listing", ""

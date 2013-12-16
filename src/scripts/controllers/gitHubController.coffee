@@ -1,5 +1,5 @@
 class Controller
-    constructor: (@messageService, @$cookies, @$scope, @$log, @chatSocketService, $modal) ->
+    constructor: (@playersService, @messageService, @$cookies, @$scope, @$log, @chatSocketService, $modal) ->
         #lurker just means you haven't yet added a user name
         @$scope.lurker = true
         @$scope.input = {}
@@ -7,6 +7,7 @@ class Controller
         @$scope.players = []
 
         @messageService.subscribe "player-added", (name, parameters) =>
+            console.log("player added")
             @$scope.players = parameters.players
 
         @chatSocketService.on "chat:message", (data) =>
@@ -14,6 +15,7 @@ class Controller
 
         @sendMessage = (message) =>
             @chatSocketService.emit "chat:message", message
+            @$scope.message = ""
 
         @$scope.open = =>
             @modalInstance = $modal.open({
@@ -29,6 +31,8 @@ class Controller
             , =>
                 @$log.info('Modal dismissed at: ' + new Date())
 
+            @$scope.shouldBeOpen = "true"
+
         @$scope.ok = =>
             @modalInstance.close()
 
@@ -37,6 +41,7 @@ class Controller
 
 
 angular.module('app').controller 'gitHubController', [
+    'playersService',
     'messageService',
     '$cookies',
     '$scope',

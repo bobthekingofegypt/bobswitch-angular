@@ -25,6 +25,7 @@ class Service
         @listeners[event].push(callback)
 
     onmessage: (message) ->
+        console.log message
         data = angular.fromJson message.data
         if data.type == "event"
             if @listeners[data.name]

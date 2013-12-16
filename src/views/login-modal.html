@@ -2,7 +2,7 @@
     <h3>Enter a name to join</h3>
 </div>
 <div class="modal-body">
-    <input type="text" ng-model="input.name" placeholder="Enter a name here" /> 
+    <input type="text" ng-model="input.name" ui-keypress="{13:'ok()'}" focus-me="{{shouldBeOpen}}" placeholder="Enter a name here" /> 
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>
