@@ -22,5 +22,5 @@ class Service
         @messageService.publish "player-added", { players: @players }
 
 
-angular.module('app').service 'playersService', ['$log', 'messageService', 'chatSocketService', Service]
+angular.module('app').service 'playersService', ['$log', 'messageService', 'socketService', Service]
 

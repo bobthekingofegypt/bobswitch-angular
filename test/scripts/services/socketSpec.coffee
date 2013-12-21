@@ -15,8 +15,8 @@ describe "chatSocketService", ->
             $provide.value('$window', mock)
             null
 
-        inject (_chatSocketService_) ->
-            service = _chatSocketService_
+        inject (_socketService_) ->
+            service = _socketService_
             service.block = false
 
     it 'should call callback on recieving a message', ->

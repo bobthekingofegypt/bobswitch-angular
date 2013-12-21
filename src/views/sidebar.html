@@ -1,27 +1,25 @@
-<section ng-controller="gitHubController as controller">
-    <div id="players">
-        <div ng-show="players.length == 0" class="player">
-            <h1>&nbsp;</h1>
-        </div>
-        <div ng-repeat="player in players track by $index" class="player">
-            <img src="images/profile.png" />
-            <h1>{{ player.name }}</h1>
-            <span>Played: {{ player.played }}</span><span>Won: {{ player.won }}</span>
-        </div>
-        <form ng-show="lurker" ng-submit="open()">
-            <button type="submit" class="btn">Join</button>
+<div ng-controller="playerController as controller" id="players">
+    <div ng-show="players.length == 0" class="player">
+        <h1>&nbsp;</h1>
+    </div>
+    <div ng-repeat="player in players track by $index" class="player">
+        <img src="images/profile.png" />
+        <h1>{{ player.name }}</h1>
+        <span>Played: {{ player.played }}</span><span>Won: {{ player.won }}</span>
+    </div>
+    <form ng-show="lurker" ng-submit="open()">
+        <button type="submit" class="btn">Join</button>
+    </form>
+</div>
+<div ng-controller="chatController as controller" id="chat">
+
+    <div class="messages">
+        <p ng-repeat="message in messages track by $index"><span ng-if="message.name">{{ message.name }}:</span> {{message.text}}</p>
+    </div>
+    <div class="message">
+        <form class=""  ui-keypress="{13:'controller.sendMessage(message)'}">
+            <input type="text" placeholder="Enter text here" class="input-mysize" ng-model="message" />
         </form>
     </div>
-    <div id="chat">
 
-        <div class="messages">
-            <p ng-repeat="message in messages track by $index"><span ng-if="message.name">{{ message.name }}:</span> {{message.text}}</p>
-        </div>
-        <div class="message">
-            <form class=""  ui-keypress="{13:'controller.sendMessage(message)'}">
-                <input type="text" placeholder="Enter text here" class="input-mysize" ng-model="message" />
-    </form>
-        </div>
-
-    </div>
-</section>
+</div>

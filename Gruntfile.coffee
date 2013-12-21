@@ -267,7 +267,7 @@ module.exports = (grunt) ->
                     junitReporter:
                         outputFile: 'test-results.xml'
                     keepalive: false
-                    logLevel: 'DEBUG'
+                    logLevel: 'WARN'
                     port: 9876
                     preprocessors:
                         '**/*.coffee': 'coffee'

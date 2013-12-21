@@ -11,7 +11,6 @@ class Service
             @processQueue()
 
         @sock.onmessage = (message) =>
-            console.log("WTF")
             @onmessage message
 
     processQueue: ->
@@ -45,4 +44,4 @@ class Service
                 'message': message
             }
 
-angular.module('app').service 'chatSocketService', ['$rootScope', '$log', '$window', Service]
+angular.module('app').service 'socketService', ['$rootScope', '$log', '$window', Service]

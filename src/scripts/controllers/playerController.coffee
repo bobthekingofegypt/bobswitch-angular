@@ -1,21 +1,16 @@
 class Controller
-    constructor: (@playersService, @messageService, @$cookies, @$scope, @$log, @chatSocketService, $modal) ->
+    constructor: (@$log, @messageService, @socketService, @$cookies,
+                        @$scope, $modal, playersService) ->
         #lurker just means you haven't yet added a user name
         @$scope.lurker = true
+        #input is used to store the name from the modal
         @$scope.input = {}
-        @$scope.messages = [{ text: 'Welcome to bobswitch' }]
+
         @$scope.players = []
-
+        
         @messageService.subscribe "player-added", (name, parameters) =>
-            console.log("player added")
+            @$log.info("Player added: " + name)
             @$scope.players = parameters.players
-
-        @chatSocketService.on "chat:message", (data) =>
-            @$scope.messages.push data
-
-        @sendMessage = (message) =>
-            @chatSocketService.emit "chat:message", message
-            @$scope.message = ""
 
         @$scope.open = =>
             @modalInstance = $modal.open({
@@ -24,13 +19,15 @@ class Controller
             })
 
             @modalInstance.result.then =>
-                @$cookies.name = $scope.input.name
-                @chatSocketService.emit "account:login", @$scope.input.name
+                @$cookies.name = @$scope.input.name
+                @socketService.emit "account:login", @$scope.input.name
 
+                @$scope.shouldBeOpen = "false"
                 @$scope.lurker = false
             , =>
                 @$log.info('Modal dismissed at: ' + new Date())
 
+            #used to force focus on user input when modal is presented
             @$scope.shouldBeOpen = "true"
 
         @$scope.ok = =>
@@ -39,14 +36,13 @@ class Controller
         @$scope.cancel = =>
             @modalInstance.dismiss()
 
-
-angular.module('app').controller 'gitHubController', [
-    'playersService',
+angular.module('app').controller 'playerController', [
+    '$log',
     'messageService',
+    'socketService',
     '$cookies',
     '$scope',
-    '$log',
-    'chatSocketService',
     '$modal',
+    'playersService',
     Controller
 ]
