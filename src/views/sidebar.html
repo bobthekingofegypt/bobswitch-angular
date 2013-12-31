@@ -8,7 +8,7 @@
         <span>Played: {{ player.played }}</span><span>Won: {{ player.won }}</span>
     </div>
     <form ng-show="lurker" ng-submit="open()">
-        <button type="submit" class="btn">Join</button>
+        <button type="submit" class="btn" value="Join">Join</button>
     </form>
 </div>
 <div ng-controller="chatController as controller" id="chat">
