@@ -2,21 +2,25 @@ class Service
     constructor: (@$log, @messageService, @socketService) ->
         @players = []
 
-        @socketService.on "players:listing", (names) =>
-            @addPlayer name for name in names
+        @socketService.on "players:listing", (players) =>
+            for player in players
+                @addPlayer player.name, player.ready
 
         @socketService.on "players:added", (message) =>
-            console.log("on players added")
-            @addPlayer message
+            @addPlayer message, false
 
         @socketService.emit "account:listing", ""
 
+        @socketService.on "game:player:ready", (name) =>
+            for player in @players when player.name == name
+                player.ready = true
 
-    addPlayer: (name) ->
+    addPlayer: (name, ready) ->
         @players.push {
             name: name
             played: 0
             won: 0
+            ready: ready
         }
 
         @messageService.publish "player-added", { players: @players }

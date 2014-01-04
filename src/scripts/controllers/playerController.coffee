@@ -22,6 +22,8 @@ class Controller
                 @$cookies.name = @$scope.input.name
                 @socketService.emit "account:login", @$scope.input.name
 
+                @messageService.publish "signed-in"
+
                 @$scope.shouldBeOpen = "false"
                 @$scope.lurker = false
             , =>
@@ -35,6 +37,7 @@ class Controller
 
         @$scope.cancel = =>
             @modalInstance.dismiss()
+        
 
 angular.module('app').controller 'playerController', [
     '$log',

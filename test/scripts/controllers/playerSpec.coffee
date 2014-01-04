@@ -13,6 +13,7 @@ describe "player controller tests", ->
     beforeEach ->
         messageService = {
             'subscribe': ->
+            'publish': ->
         }
 
         modalResult = {

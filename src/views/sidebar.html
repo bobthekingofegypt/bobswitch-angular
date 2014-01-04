@@ -1,10 +1,9 @@
 <div ng-controller="playerController as controller" id="players">
     <div ng-show="players.length == 0" class="player">
-        <h1>&nbsp;</h1>
     </div>
     <div ng-repeat="player in players track by $index" class="player">
         <img src="images/profile.png" />
-        <h1>{{ player.name }}</h1>
+        <div class="player-name">{{ player.name }}<span ng-show="player.ready">(ready)</span></div>
         <span>Played: {{ player.played }}</span><span>Won: {{ player.won }}</span>
     </div>
     <form ng-show="lurker" ng-submit="open()">

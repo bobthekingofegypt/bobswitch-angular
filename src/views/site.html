@@ -1,190 +1,197 @@
-<div class="contner">
+<div ng-controller="gameController as controller" class="main_container">
     <div class="ro">
         <div class="cener">
+
             <div id="test">&nbsp;
+                <div id="game-board" ng-show="showGame">
                 
-                <div id="deck" class="card">
-                    <img src="images/back.png"/>
-                </div>
-                <div id="stack" class="card">
-                    <img src="images/KD.png"/>
+                    <div id="deck" class="card">
+                        <img src="images/back.png"/>
+                    </div>
+                    <div id="stack" class="card">
+                        <img src="images/KD.png"/>
+                    </div>
+
+                    <div id="playerOneName">
+                        <img width="20" height="20" src="images/profile.png"/>
+                        <span>Richard Martin</span>
+                    </div>
+                    <div id="playerOne" class="playingCards">
+                        <div id="playerOneCards">
+                            <div class="card">
+                                <img src="images/AS.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/2S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/3S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/4S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/5S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/6S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/7S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/8S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/9S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/10S.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/JS.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/QS.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/KS.png"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="playerTwo" class="playingCards">
+                        <div id="playerTwoCards">
+                            <div class="card">
+                                <img src="images/AH.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/2H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/3H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/4H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/5H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/6H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/7H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/8H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/9H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/10H.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/JH.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/QH.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/KH.png"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="playerThree" class="playingCards">
+                        <div id="playerThreeCards">
+                            <div class="card">
+                                <img src="images/AD.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/2D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/3D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/4D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/5D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/6D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/7D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/8D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/9D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/10D.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/JD.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/QD.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/KD.png"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="playerFour" class="playingCards">
+                        <div id="playerFourCards">
+                            <div class="card">
+                                <img src="images/AC.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/2C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/3C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/4C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/5C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/6C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/7C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/8C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/9C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/10C.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/JC.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/QC.png"/>
+                            </div>
+                            <div class="card">
+                                <img src="images/KC.png"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div id="playerOneName">
-                    <img width="20" height="20" src="images/profile.png"/>
-                    <span>Richard Martin</span>
-                </div>
-                <div id="playerOne" class="playingCards">
-                    <div id="playerOneCards">
-                        <div class="card">
-                            <img src="images/AS.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/2S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/3S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/4S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/5S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/6S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/7S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/8S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/9S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/10S.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/JS.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/QS.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/KS.png"/>
-                        </div>
-                    </div>
-                </div>
-                <div id="playerTwo" class="playingCards">
-                    <div id="playerTwoCards">
-                        <div class="card">
-                            <img src="images/AH.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/2H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/3H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/4H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/5H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/6H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/7H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/8H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/9H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/10H.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/JH.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/QH.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/KH.png"/>
-                        </div>
-                    </div>
-                </div>
-                <div id="playerThree" class="playingCards">
-                    <div id="playerThreeCards">
-                        <div class="card">
-                            <img src="images/AD.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/2D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/3D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/4D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/5D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/6D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/7D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/8D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/9D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/10D.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/JD.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/QD.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/KD.png"/>
-                        </div>
-                    </div>
-                </div>
-                <div id="playerFour" class="playingCards">
-                    <div id="playerFourCards">
-                        <div class="card">
-                            <img src="images/AC.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/2C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/3C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/4C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/5C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/6C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/7C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/8C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/9C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/10C.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/JC.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/QC.png"/>
-                        </div>
-                        <div class="card">
-                            <img src="images/KC.png"/>
-                        </div>
-                    </div>
+                <div id="ready-view" ng-show="showReadyButton">
+                    <a class="large button red" ng-click="controller.ready();">Ready?</a>
                 </div>
             </div>
 
