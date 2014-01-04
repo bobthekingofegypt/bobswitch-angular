@@ -5,7 +5,7 @@ class Controller
 
         @messageService.subscribe "signed-in", @signedIn
 
-        @socketService.on "test", @test
+        @socketService.on "game_state_start", @test
         
     signedIn: (name, parameters) =>
         @$scope.showReadyButton = true
