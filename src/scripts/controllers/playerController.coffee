@@ -1,6 +1,6 @@
 class Controller
     constructor: (@$log, @messageService, @socketService, @$cookies,
-                        @$scope, $modal, playersService) ->
+                        @$scope, $modal, @playersService) ->
         #lurker just means you haven't yet added a user name
         @$scope.lurker = true
         #input is used to store the name from the modal
@@ -19,7 +19,8 @@ class Controller
             })
 
             @modalInstance.result.then =>
-                @$cookies.name = @$scope.input.name
+                #@$cookies.name = @$scope.input.name
+                @playersService.setName @$scope.input.name
                 @socketService.emit "account:login", @$scope.input.name
 
                 @messageService.publish "signed-in"

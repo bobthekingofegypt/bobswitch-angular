@@ -9,189 +9,69 @@
                         <img src="images/back.png"/>
                     </div>
                     <div id="stack" class="card">
-                        <img src="images/KD.png"/>
+                        <img src="images/{{topCard}}.png"/>
                     </div>
 
-                    <div id="playerOneName">
+                    <div id="seatAActive" ng-show="players[0].active">
+                        <img width="20" height="20" src="images/active.png"/>
+                    </div>
+                    <div id="seatAName">
                         <img width="20" height="20" src="images/profile.png"/>
-                        <span>Richard Martin</span>
+                        <span>{{ players[0].name }}</span>
                     </div>
                     <div id="playerOne" class="playingCards">
-                        <div id="playerOneCards">
-                            <div class="card">
-                                <img src="images/AS.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/2S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/3S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/4S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/5S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/6S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/7S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/8S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/9S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/10S.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/JS.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/QS.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/KS.png"/>
+                        <div id="playerOneCards" style="width: {{cardWidth(range(players[0].count))}}px;">
+                            <div ng-repeat="card in players[0].cards track by $index" class="card">
+                                <img src="images/{{card}}.png"/>
                             </div>
                         </div>
+                    </div>
+                    <div id="seatBActive" ng-show="players[1].active">
+                        <img width="20" height="20" src="images/active.png"/>
+                    </div>
+                    <div id="seatBName" ng-show="players[1].name">
+                        <img width="20" height="20" src="images/profile.png"/>
+                        <span>{{ players[1].name }}</span>
                     </div>
                     <div id="playerTwo" class="playingCards">
-                        <div id="playerTwoCards">
-                            <div class="card">
-                                <img src="images/AH.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/2H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/3H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/4H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/5H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/6H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/7H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/8H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/9H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/10H.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/JH.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/QH.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/KH.png"/>
+                        <div id="playerTwoCards" style="width: {{cardWidth(range(players[1].count))}}px;">
+                            <div ng-repeat="card in range(players[1].count) track by $index" class="card">
+                                <img src="images/back.png"/>
                             </div>
                         </div>
+                    </div>
+                    <div id="seatCActive" ng-show="players[2].active">
+                        <img width="20" height="20" src="images/active.png"/>
+                    </div>
+                    <div id="seatCName" ng-show="players[2].name">
+                        <img width="20" height="20" src="images/profile.png"/>
+                        <span>{{ players[2].name }}</span>
                     </div>
                     <div id="playerThree" class="playingCards">
-                        <div id="playerThreeCards">
-                            <div class="card">
-                                <img src="images/AD.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/2D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/3D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/4D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/5D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/6D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/7D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/8D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/9D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/10D.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/JD.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/QD.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/KD.png"/>
+                        <div id="playerThreeCards" style="width: {{cardWidth(range(players[2].count))}}px;">
+                            <div ng-repeat="card in range(players[2].count) track by $index" class="card">
+                                <img src="images/back.png"/>
                             </div>
                         </div>
                     </div>
+                    <div id="seatDActive" ng-show="players[3].active">
+                        <img width="20" height="20" src="images/active.png"/>
+                    </div>
+                    <div id="seatDName" ng-show="players[3].name">
+                        <img width="20" height="20" src="images/profile.png"/>
+                        <span>{{ players[3].name }}</span>
+                    </div>
                     <div id="playerFour" class="playingCards">
-                        <div id="playerFourCards">
-                            <div class="card">
-                                <img src="images/AC.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/2C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/3C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/4C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/5C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/6C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/7C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/8C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/9C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/10C.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/JC.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/QC.png"/>
-                            </div>
-                            <div class="card">
-                                <img src="images/KC.png"/>
+                        <div id="playerFourCards" style="width: {{cardWidth(range(players[3].count))}}px;">
+                            <div ng-repeat="card in range(players[3].count) track by $index" class="card">
+                                <img src="images/back.png"/>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="ready-view" ng-show="showReadyButton">
-                    <a class="large button red" ng-click="controller.ready();">Ready?</a>
+                    <a id="ready-button" class="large button red" ng-click="controller.ready();">Ready?</a>
                 </div>
             </div>
 

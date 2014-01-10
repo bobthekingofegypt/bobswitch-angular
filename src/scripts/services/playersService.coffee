@@ -1,6 +1,9 @@
 class Service
     constructor: (@$log, @messageService, @socketService) ->
         @players = []
+        @name = ""
+
+        @socketService.on "game:state:start", @resetReadyFlags
 
         @socketService.on "players:listing", (players) =>
             for player in players
@@ -14,6 +17,16 @@ class Service
         @socketService.on "game:player:ready", (name) =>
             for player in @players when player.name == name
                 player.ready = true
+
+    resetReadyFlags: =>
+        for player in @players
+            player.ready = false
+
+    setName: (name) ->
+        @name = name
+
+    getName: ->
+        return @name
 
     addPlayer: (name, ready) ->
         @players.push {

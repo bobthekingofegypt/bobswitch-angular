@@ -106,6 +106,11 @@ module.exports = (grunt) ->
                     dest: '.temp/scripts/libs/'
                     expand: true
                 ,
+                    cwd: 'bower_components/lodash/dist/'
+                    src: 'lodash.min.js'
+                    dest: '.temp/scripts/libs/'
+                    expand: true
+                ,
                     cwd: 'bower_components/angular-animate/'
                     src: 'angular-animate.*'
                     dest: '.temp/scripts/libs/'
@@ -246,7 +251,7 @@ module.exports = (grunt) ->
 
         # Runs unit tests using karma
         karma:
-            unit:
+            coverage:
                 options:
                     browsers: [
                         'PhantomJS'
@@ -255,6 +260,42 @@ module.exports = (grunt) ->
                     colors: true
                     files: [
                         'dist/scripts/libs/angular.js'
+                        'dist/scripts/libs/lodash.min.js'
+                        'dist/scripts/libs/angular-animate.js'
+                        'dist/scripts/libs/angular-route.js'
+                        'bower_components/angular-mocks/angular-mocks.js'
+                        'dist/**/*.js'
+                        'test/**/*.{coffee,js}'
+                    ]
+                    frameworks: [
+                        'jasmine'
+                    ]
+                    keepalive: false
+                    logLevel: 'WARN'
+                    port: 9876
+                    reporters: [
+                        'dots'
+                        'coverage'
+                        'progress'
+                    ]
+                    coverageReporter :
+                        type: 'html'
+                        dir: 'test/coverage/'
+                    preprocessors:
+                        '**/*.coffee': 'coffee'
+                        'dist/scripts/!(lib)/*.js': 'coverage'
+                    runnerPort: 9100
+                    singleRun: true
+            unit:
+                options:
+                    browsers: [
+                        'Chrome'
+                    ]
+                    captureTimeout: 15000
+                    colors: true
+                    files: [
+                        'dist/scripts/libs/angular.js'
+                        'dist/scripts/libs/lodash.min.js'
                         'dist/scripts/libs/angular-animate.js'
                         'dist/scripts/libs/angular-route.js'
                         'bower_components/angular-mocks/angular-mocks.js'
@@ -267,15 +308,15 @@ module.exports = (grunt) ->
                     junitReporter:
                         outputFile: 'test-results.xml'
                     keepalive: false
-                    logLevel: 'WARN'
+                    logLevel: 'ERROR'
                     port: 9876
-                    preprocessors:
-                        '**/*.coffee': 'coffee'
                     reporters: [
                         'dots'
                         'junit'
                         'progress'
                     ]
+                    preprocessors:
+                        '**/*.coffee': 'coffee'
                     runnerPort: 9100
                     singleRun: true
 
@@ -466,7 +507,7 @@ module.exports = (grunt) ->
                 tasks: [
                     'copy:app'
                     'copy:dev'
-                    'karma'
+                    'karma:unit'
                 ]
                 options:
                     livereload: true
@@ -480,7 +521,7 @@ module.exports = (grunt) ->
                     'shimmer:dev'
                     'coffee:app'
                     'copy:dev'
-                    'karma'
+                    'karma:unit'
                 ]
                 options:
                     livereload: true
@@ -491,7 +532,7 @@ module.exports = (grunt) ->
                     'copy:app'
                     'jade:views'
                     'copy:dev'
-                    'karma'
+                    'karma:unit'
                 ]
                 options:
                     livereload: true
@@ -512,7 +553,7 @@ module.exports = (grunt) ->
                     'copy:app'
                     'template:indexDev'
                     'copy:dev'
-                    'karma'
+                    'karma:unit'
                 ]
                 options:
                     livereload: true
@@ -524,7 +565,7 @@ module.exports = (grunt) ->
                     'template:indexDev'
                     'jade:spa'
                     'copy:dev'
-                    'karma'
+                    'karma:unit'
                 ]
                 options:
                     livereload: true
@@ -532,7 +573,7 @@ module.exports = (grunt) ->
             test:
                 files: 'test/**/*.*'
                 tasks: [
-                    'karma'
+                    'karma:unit'
                 ]
             # Used to keep the web server alive
             none:
@@ -677,9 +718,13 @@ module.exports = (grunt) ->
     # grunt test
     grunt.registerTask 'test', [
         'build'
-        'karma'
+        'karma:unit'
     ]
 
+    grunt.registerTask 'coverage', [
+        'build'
+        'karma:coverage'
+    ]
     # Compiles all CoffeeScript files in the project to JavaScript then deletes all CoffeeScript files
     # Used for those that desire plain old JavaScript
     # Enter the following command at the command line to execute this build task:

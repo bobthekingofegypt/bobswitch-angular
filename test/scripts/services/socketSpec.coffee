@@ -19,6 +19,22 @@ describe "chatSocketService", ->
             service = _socketService_
             service.block = false
 
+    it 'should not send until service unblocked by loading completing', ->
+        service.block = true
+
+        send = jasmine.createSpy()
+        sockjsSpy.send = send
+
+        service.emit "bob", "a message"
+
+        expect(send).not.toHaveBeenCalled()
+
+        sockjsSpy.onopen()
+
+        expect(send).toHaveBeenCalledWith '{"type":"event","name":"bob","message":"a message"}'
+
+
+
     it 'should call callback on recieving a message', ->
         callback = jasmine.createSpy("on bob event callback")
 
