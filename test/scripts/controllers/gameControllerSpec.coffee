@@ -141,3 +141,16 @@ describe "game controller tests", ->
     it 'should return array of size give to range', ->
         expect(scope.range(3).length).toBe(3)
         expect(scope.range(0).length).toBe(0)
+
+    it 'should remove a card from players hand', ->
+        scope.players = [
+            {
+                name: "bob",
+                count: 3,
+                cards: ['QA', '2H', '4C']
+            }
+        ]
+
+        controller.selectedCard(1)
+
+        expect(scope.players[0].cards).toEqual(['QA', '4C'])

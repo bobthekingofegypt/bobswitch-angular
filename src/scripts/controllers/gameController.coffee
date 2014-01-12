@@ -27,9 +27,11 @@ class Controller
 
         @socketService.emit "game:player:ready", ""
 
+    selectedCard: (index) ->
+        console.log "card - " + index
+        @$scope.players[0].cards.splice(index, 1)
     
     start: (message) =>
-        console.log "message", message
         @$scope.showGame = true
 
         numberOfPlayers = message.number_of_players

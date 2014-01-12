@@ -13,8 +13,8 @@
     "sockjs": "0.3.4",
     "angular-bootstrap": "0.7.0",
     "angular-underscore-module": "*",
-    "lodash": "~2.4.1"
-    "angular-cookies": "1.2.4"
+    "lodash": "~2.4.1",
+    "angular-cookies": "1.2.2"
   },
   "devDependencies": {
   }

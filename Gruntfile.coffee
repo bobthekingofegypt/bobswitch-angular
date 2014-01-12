@@ -131,6 +131,11 @@ module.exports = (grunt) ->
                     dest: '.temp/scripts/libs/'
                     expand: true
                 ,
+                    cwd: 'bower_components/angular-ui-sortable/src/'
+                    src: 'sortable.js'
+                    dest: '.temp/scripts/libs/'
+                    expand: true
+                ,
                     cwd: 'bower_components/angular-route/'
                     src: 'angular-route.*'
                     dest: '.temp/scripts/libs/'
@@ -158,6 +163,16 @@ module.exports = (grunt) ->
                 ,
                     cwd: 'bower_components/json3/lib/'
                     src: 'json3.min.js'
+                    dest: '.temp/scripts/libs/'
+                    expand: true
+                ,
+                    cwd: 'bower_components/jquery/'
+                    src: 'jquery.js'
+                    dest: '.temp/scripts/libs/'
+                    expand: true
+                ,
+                    cwd: 'bower_components/jquery-ui/ui/'
+                    src: 'jquery-ui.js'
                     dest: '.temp/scripts/libs/'
                     expand: true
                 ,
@@ -434,6 +449,8 @@ module.exports = (grunt) ->
                     '!libs/require.{coffee,js}'
                 ]
                 order: [
+                    'libs/jquery.js'
+                    'libs/jquery-ui.js'
                     'libs/angular.min.js'
                     'NGAPP':
                         'ngAnimate': 'libs/angular-animate.min.js'
@@ -442,6 +459,7 @@ module.exports = (grunt) ->
                         'ngCookies': 'libs/angular-cookies.min.js'
                         'ui.bootstrap': 'libs/ui-bootstrap-tpls.min.js'
                         'ui.keypress': 'libs/keypress.js'
+                        'ui.sortable': 'libs/sortable.js'
                 ]
                 require: 'NGBOOTSTRAP'
             prod:
