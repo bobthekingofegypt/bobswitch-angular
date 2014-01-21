@@ -25,7 +25,7 @@
                     </div>
                     <div id="playerOne" class="playingCards">
                         <div id="playerOneCards" style="width: {{cardWidth(range(players[0].count))}}px;">
-                            <div ng-repeat="card in players[0].cards track by $index" class="card">
+                            <div ng-repeat="card in players[0].cards track by $index" class="player-card card">
                                 <img ng-dblclick="controller.selectedCard($index)" src="images/{{card.name}}.png"/>
                             </div>
                         </div>
