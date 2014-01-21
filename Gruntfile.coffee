@@ -304,11 +304,13 @@ module.exports = (grunt) ->
             unit:
                 options:
                     browsers: [
-                        'Chrome'
+                        'PhantomJS'
                     ]
                     captureTimeout: 15000
                     colors: true
                     files: [
+                        'dist/scripts/libs/jquery.js'
+                        'dist/scripts/libs/jquery-ui.js'
                         'dist/scripts/libs/angular.js'
                         'dist/scripts/libs/lodash.min.js'
                         'dist/scripts/libs/angular-animate.js'
@@ -323,7 +325,7 @@ module.exports = (grunt) ->
                     junitReporter:
                         outputFile: 'test-results.xml'
                     keepalive: false
-                    logLevel: 'ERROR'
+                    logLevel: 'DEBUG'
                     port: 9876
                     reporters: [
                         'dots'

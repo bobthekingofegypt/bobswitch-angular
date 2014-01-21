@@ -5,7 +5,7 @@
             <div id="test">&nbsp;
                 <div id="game-board" ng-show="showGame">
                 
-                    <div id="deck" class="card">
+                    <div id="deck" ng-dblclick="controller.pick()" class="card">
                         <img src="images/back.png"/>
                     </div>
                     <div id="stack" class="card">
@@ -15,6 +15,10 @@
                     <div id="seatAActive" ng-show="players[0].active">
                         <img width="20" height="20" src="images/active.png"/>
                     </div>
+
+                    <div id="seatWait" ng-show="players[0].wait">
+                        <a id="ready-button" class="large button red" ng-click="controller.wait();">Wait</a>
+                    </div>
                     <div id="seatAName">
                         <img width="20" height="20" src="images/profile.png"/>
                         <span>{{ players[0].name }}</span>
@@ -22,7 +26,7 @@
                     <div id="playerOne" class="playingCards">
                         <div id="playerOneCards" style="width: {{cardWidth(range(players[0].count))}}px;">
                             <div ng-repeat="card in players[0].cards track by $index" class="card">
-                                <img ng-dblclick="controller.selectedCard($index)" src="images/{{card}}.png"/>
+                                <img ng-dblclick="controller.selectedCard($index)" src="images/{{card.name}}.png"/>
                             </div>
                         </div>
                     </div>

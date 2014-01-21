@@ -55,8 +55,9 @@ describe "game controller tests", ->
                 { suit: 3, rank: 11 }
                 { suit: 1, rank: 1 }
             ]
-            players: [ "bob", "john" ]
+            players: [ { name: "john", count: 3 }, { name: "bob", count: 3 } ]
             top_card: { suit: 2, rank: 1 }
+            starting_player: 1
         }
 
         expect(scope.players[0].name).toBe("john")
@@ -70,8 +71,8 @@ describe "game controller tests", ->
         expect(scope.players[3].count).toBe(0)
 
         expect(scope.players[0].cards.length).toBe(3)
-        expect(scope.players[0].cards[0]).toBe("AH")
-        expect(scope.players[0].cards[1]).toBe("JS")
+        expect(scope.players[0].cards[0].name).toBe("AH")
+        expect(scope.players[0].cards[1].name).toBe("JS")
 
     it 'should add 3 players to players array', ->
         spyOn(playerService, 'getName').andCallFake ->
@@ -84,7 +85,8 @@ describe "game controller tests", ->
                 { suit: 3, rank: 11 }
                 { suit: 1, rank: 1 }
             ]
-            players: [ "bob", "scott", "john" ]
+            players: [ { name: "bob", count: 3 }, { name: "scott", count: 3 },
+                { name: "john", count: 4 } ]
             top_card: { suit: 2, rank: 1 }
             starting_player: 2
         }
@@ -116,7 +118,8 @@ describe "game controller tests", ->
                 { suit: 3, rank: 11 }
                 { suit: 1, rank: 1 }
             ]
-            players: [ "bob", "scott", "john", "fred" ]
+            players: [ { name: "bob", count: 3 }, { name: "scott", count: 3 },
+                { name: "john", count: 4 }, { name: "fred", count: 6 } ]
             top_card: { suit: 2, rank: 1 }
             starting_player: 0
         }
@@ -127,7 +130,7 @@ describe "game controller tests", ->
         expect(scope.players[3].name).toBe("scott")
 
         expect(scope.players[0].count).toBe(3)
-        expect(scope.players[1].count).toBe(3)
+        expect(scope.players[1].count).toBe(6)
         expect(scope.players[2].count).toBe(3)
         expect(scope.players[3].count).toBe(3)
 
