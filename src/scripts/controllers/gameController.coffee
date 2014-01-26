@@ -5,8 +5,15 @@ class Controller
 
         @$scope.winner = ""
 
-        @$scope.topCard = undefined
+        @$scope.topCard = "back"
         @$scope.players = new Array(4)
+        for player, i in @$scope.players
+            @$scope.players[i] = {
+                name: null
+                count: 0
+                cards: []
+                active: false
+            }
 
         @messageService.subscribe "signed-in", @signedIn
 
