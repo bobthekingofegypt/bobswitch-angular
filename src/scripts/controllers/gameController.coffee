@@ -3,6 +3,8 @@ class Controller
         @$scope.showReadyButton = false
         @$scope.showGame = false
 
+        @$scope.winner = ""
+
         @$scope.topCard = undefined
         @$scope.players = new Array(4)
 
@@ -26,6 +28,7 @@ class Controller
 
     ready: ->
         @$scope.showReadyButton = false
+        @$scope.showFinishButton = false
 
         @socketService.emit "game:player:ready", ""
 
@@ -36,6 +39,9 @@ class Controller
 
 
     selectedCard: (index) =>
+        if !@$scope.players[0].active
+            return
+
         card = @$scope.players[0].cards[index]
 
         if card.raw.rank == 1
@@ -44,6 +50,9 @@ class Controller
             @sendPlayerMove index
 
     openAceModal: (index) =>
+        if !@$scope.players[0].active
+            return
+
         @modalInstance = @$modal.open {
             templateUrl: '/views/ace-modal.html',
             scope: @$scope,
@@ -58,15 +67,12 @@ class Controller
                 card: @$scope.players[0].cards[index].raw
                 suit: suit
             }
-            @$scope.players[0].cards.splice(index, 1)
-
 
     sendPlayerMove: (index) ->
         @socketService.emit "game:player:move", {
             type: "play"
             card: @$scope.players[0].cards[index].raw
         }
-        @$scope.players[0].cards.splice(index, 1)
 
     wait: ->
         @socketService.emit "game:player:move", {
@@ -78,7 +84,16 @@ class Controller
 
 
     start: (message) =>
-        @$scope.showGame = true
+
+        if message.state == "finished"
+            @$scope.showGame = false
+            @$scope.showFinishButton = true
+
+            for player in message.players
+                if player.count == 0
+                    @$scope.winner = player.name
+        else
+            @$scope.showGame = true
 
         numberOfPlayers = message.number_of_players
 
@@ -119,6 +134,7 @@ class Controller
                 containsEight = true if card.rank == 8
                 break
             @$scope.players[0].wait = startingName == @playersService.getName() and !containsEight
+
 
         console.log(playerNames)
         if numberOfPlayers == 2

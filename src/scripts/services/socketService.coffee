@@ -4,7 +4,8 @@ class Service
         @block = true
         @queue = []
 
-        @sock = new @$window.SockJS('http://localhost:8080/bobswitch')
+        host = "http://"+window.location.hostname
+        @sock = new @$window.SockJS(''+host+':4500/bobswitch')
         @sock.onopen = () =>
             @$log.info "Socket connection created"
             @block = false

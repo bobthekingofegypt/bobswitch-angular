@@ -97,7 +97,7 @@ module.exports = (grunt) ->
                     expand: true
                 ,
                     cwd: 'bower_components/sockjs/'
-                    src: 'sockjs.min.js'
+                    src: 'sockjs.js'
                     dest: '.temp/scripts/libs/'
                     expand: true
                 ,
@@ -420,13 +420,15 @@ module.exports = (grunt) ->
                     out: '.temp/scripts/scripts.min.js'
                     preserveLicenseComments: false
                     skipModuleInsertion: true
-                    uglify:
+                    uglify2:
+                        output: {
+                            beautify:false
+                            quote_keys: true
+                            ascii_only: true
+                        }
                         # Let uglifier replace variables to further reduce file size
-                        no_mangle: false
+                        mangle: true
                     useStrict: true
-                    wrap:
-                        start: '(function(){\'use strict\';'
-                        end: '}).call(this);'
             styles:
                 options:
                     baseUrl: '.temp/styles/'
@@ -470,18 +472,25 @@ module.exports = (grunt) ->
                     '**/*.{coffee,js}'
                     '!libs/angular.{coffee,js}'
                     '!libs/angular-animate.{coffee,js}'
-                    '!libs/angular-mocks.{coffee,js}'
                     '!libs/angular-route.{coffee,js}'
+                    '!libs/angular-cookie.{coffee,js}'
+                    '!libs/ui-bootstrap-tpls.{coffee,js}'
                     '!libs/html5shiv-printshiv.{coffee,js}'
                     '!libs/json3.min.{coffee,js}'
                     '!libs/require.{coffee,js}'
                     '!backend/**/*.*'
                 ]
                 order: [
+                    'libs/jquery.js'
+                    'libs/jquery-ui.js'
                     'libs/angular.min.js'
                     'NGAPP':
                         'ngAnimate': 'libs/angular-animate.min.js'
                         'ngRoute': 'libs/angular-route.min.js'
+                        'ngCookies': 'libs/angular-cookies.min.js'
+                        'ui.bootstrap': 'libs/ui-bootstrap-tpls.min.js'
+                        'ui.keypress': 'libs/keypress.js'
+                        'ui.sortable': 'libs/sortable.js'
                 ]
                 require: '<%= shimmer.dev.require %>'
 
@@ -507,6 +516,11 @@ module.exports = (grunt) ->
 
         # Concatenates and minifies JavaScript files
         uglify:
+            options : {
+                beautify : {
+                    ascii_only : true
+                }    
+            }
             scripts:
                 files:
                     '.temp/scripts/ie.min.js': [
@@ -710,7 +724,6 @@ module.exports = (grunt) ->
         'shimmer:prod'
         'coffee:app'
         'imagemin'
-        'hash:images'
         'less'
         'requirejs'
         'uglify'

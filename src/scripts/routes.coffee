@@ -1,9 +1,7 @@
 class Config
     constructor: ($routeProvider) ->
         $routeProvider
-        .when '/github/:id',
-            controller: 'gitHubController'
         .otherwise
-            redirectTo: '/github'
+            redirectTo: '/'
 
 angular.module('app').config ['$routeProvider', Config]

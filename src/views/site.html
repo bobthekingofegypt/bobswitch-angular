@@ -74,6 +74,10 @@
                     </div>
                 </div>
 
+                <div id="ready-view" ng-show="showFinishButton">
+                    <h2>{{ winner }} wins!</h2>
+                    <a id="ready-button" class="large button green" ng-click="controller.ready();">Play Again?</a>
+                </div>
                 <div id="ready-view" ng-show="showReadyButton">
                     <a id="ready-button" class="large button red" ng-click="controller.ready();">Ready?</a>
                 </div>
