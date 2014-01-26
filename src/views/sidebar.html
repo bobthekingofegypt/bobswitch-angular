@@ -12,7 +12,7 @@
 </div>
 <div ng-controller="chatController as controller" id="chat">
 
-    <div class="messages">
+    <div scroll-glue class="messages">
         <p ng-repeat="message in messages track by $index"><span ng-if="message.name">{{ message.name }}:</span> {{message.text}}</p>
     </div>
     <div class="message">

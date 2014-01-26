@@ -101,6 +101,11 @@ module.exports = (grunt) ->
                     dest: '.temp/scripts/libs/'
                     expand: true
                 ,
+                    cwd: 'bower_components/angularjs-scroll-glue/src/'
+                    src: 'scrollglue.js'
+                    dest: '.temp/scripts/libs/'
+                    expand: true
+                ,
                     cwd: 'bower_components/angular/'
                     src: 'angular.*'
                     dest: '.temp/scripts/libs/'
@@ -461,6 +466,7 @@ module.exports = (grunt) ->
                         'ngMockE2E': 'libs/angular-mocks.js'
                         'ngRoute': 'libs/angular-route.min.js'
                         'ngCookies': 'libs/angular-cookies.min.js'
+                        'luegg.directives': 'libs/scrollglue.js'
                         'ui.bootstrap': 'libs/ui-bootstrap-tpls.min.js'
                         'ui.keypress': 'libs/keypress.js'
                         'ui.sortable': 'libs/sortable.js'
@@ -488,6 +494,7 @@ module.exports = (grunt) ->
                         'ngAnimate': 'libs/angular-animate.min.js'
                         'ngRoute': 'libs/angular-route.min.js'
                         'ngCookies': 'libs/angular-cookies.min.js'
+                        'luegg.directives': 'libs/scrollglue.js'
                         'ui.bootstrap': 'libs/ui-bootstrap-tpls.min.js'
                         'ui.keypress': 'libs/keypress.js'
                         'ui.sortable': 'libs/sortable.js'
