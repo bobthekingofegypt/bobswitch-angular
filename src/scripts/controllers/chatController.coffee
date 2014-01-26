@@ -3,6 +3,8 @@ class Controller
         @$scope.messages = [{ text: 'Welcome to bobswitch' }]
 
         @socketService.on "chat:message", (data) =>
+            if data.name == null
+                data.name = "Guest"
             @$scope.messages.push data
 
         @sendMessage = (message) =>
