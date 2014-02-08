@@ -16,6 +16,7 @@ class Controller
             }
 
         @messageService.subscribe "signed-in", @signedIn
+        @messageService.subscribe "connection-lost", @connectionLost
 
         @socketService.on "game:state:start", @start
         @socketService.on "game:player:response", @processResponse
@@ -29,7 +30,7 @@ class Controller
 
         @$scope.cardWidth = (a) ->
             return 92 + (a.length * 18)
-        
+
     signedIn: (name, parameters) =>
         @$scope.showReadyButton = true
 
@@ -42,6 +43,14 @@ class Controller
     pick: ->
         @socketService.emit "game:player:move", {
             type: "pick"
+        }
+
+    connectionLost: =>
+        @modalInstance = @$modal.open {
+            templateUrl: '/views/connection-lost.html'
+            scope: @$scope
+            backdrop: 'static'
+            keyboard: false
         }
 
 
@@ -91,6 +100,8 @@ class Controller
 
 
     start: (message) =>
+        @$scope.showReadyButton = false
+        @$scope.showFinishButton = false
 
         if message.state == "finished"
             @$scope.showGame = false
@@ -141,6 +152,9 @@ class Controller
                 containsEight = true if card.rank == 8
                 break
             @$scope.players[0].wait = startingName == @playersService.getName() and !containsEight
+        else if message.state == "pick"
+            @$scope.players[0].pick = startingName == @playersService.getName()
+
 
 
         console.log(playerNames)
@@ -198,6 +212,10 @@ class Controller
             when 12 then rankName = "Q"
             when 13 then rankName = "K"
             else rankName = rank
+
+        card = rankName + suitName
+        if card == "AD"
+            return "AceDiamonds"
 
         return rankName + suitName
 

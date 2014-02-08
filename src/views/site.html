@@ -16,6 +16,9 @@
                         <img width="20" height="20" src="images/active.png"/>
                     </div>
 
+                    <div id="seatWait" ng-show="players[0].pick">
+                        <a id="ready-button" class="large button red" ng-click="controller.pick();">Pick</a>
+                    </div>
                     <div id="seatWait" ng-show="players[0].wait">
                         <a id="ready-button" class="large button red" ng-click="controller.wait();">Wait</a>
                     </div>

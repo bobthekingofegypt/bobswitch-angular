@@ -44,6 +44,21 @@ describe "Players service spec", ->
         expect(mockMessage.publish).toHaveBeenCalled()
         expect(mockMessage.publish.mostRecentCall.args[0]).toEqual("player-added")
 
+    it 'should remove player from list and notify all listeners', ->
+
+        playersService.players = [
+            { name: "bob" },
+            { name: "fred" }
+        ]
+
+        spyOn(mockMessage, 'publish').andCallThrough()
+        callbacks["players:removed"]("bob")
+
+        expect(playersService.players.length).toBe(1)
+
+        expect(mockMessage.publish).toHaveBeenCalled()
+        expect(mockMessage.publish.mostRecentCall.args[0]).toEqual("player-added")
+
     it 'should set players name when setName called', ->
         playersService.setName("bob")
 

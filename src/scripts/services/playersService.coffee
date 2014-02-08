@@ -4,13 +4,23 @@ class Service
         @name = ""
 
         @socketService.on "game:state:start", @resetReadyFlags
+        @socketService.on "game:state:update", @resetReadyFlags
 
         @socketService.on "players:listing", (players) =>
             for player in players
-                @addPlayer player.name, player.ready
+                @addPlayer player.name, player.ready, player.disconnected
 
         @socketService.on "players:added", (message) =>
-            @addPlayer message, false
+            @addPlayer message, false, false
+
+        @socketService.on "players:removed", (message) =>
+            @removePlayer message, false
+
+        @socketService.on "players:disconnected", (message) =>
+            @disconnectedPlayer(message)
+
+        @socketService.on "players:reconnected", (message) =>
+            @reconnectedPlayer(message)
 
         @socketService.emit "account:listing", ""
 
@@ -18,7 +28,15 @@ class Service
             for player in @players when player.name == name
                 player.ready = true
 
-    resetReadyFlags: =>
+    resetReadyFlags: (message) =>
+        console.log "running reset"
+        for player in message.players
+            for local_player in @players
+                if local_player.name == player.name
+                    local_player.played = player.played
+                    local_player.won = player.won
+        
+
         for player in @players
             player.ready = false
 
@@ -28,12 +46,38 @@ class Service
     getName: ->
         return @name
 
-    addPlayer: (name, ready) ->
+    reconnectedPlayer: (name) ->
+        for player, i in @players
+            console.log(i)
+            if player.name == name
+                ready = false
+                player.disconnected = false
+                break
+
+    disconnectedPlayer: (name) ->
+        for player, i in @players
+            console.log(i)
+            if player.name == name
+                ready = false
+                player.disconnected = true
+                break
+
+    removePlayer: (name) ->
+        for player, i in @players
+            console.log(i)
+            if player.name == name
+                @players.splice(i, 1)
+                break
+
+        @messageService.publish "player-added", { players: @players }
+
+    addPlayer: (name, ready, disconnected) ->
         @players.push {
             name: name
             played: 0
             won: 0
             ready: ready
+            disconnected: disconnected
         }
 
         @messageService.publish "player-added", { players: @players }

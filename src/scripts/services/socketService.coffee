@@ -1,5 +1,5 @@
 class Service
-    constructor: (@$rootScope, @$log, @$window) ->
+    constructor: (@$rootScope, @$log, @$window, @messageService) ->
         @listeners = {}
         @block = true
         @queue = []
@@ -10,6 +10,9 @@ class Service
             @$log.info "Socket connection created"
             @block = false
             @processQueue()
+        
+        @sock.onclose = =>
+            @messageService.publish "connection-lost", { }
 
         @sock.onmessage = (message) =>
             @onmessage message
@@ -45,4 +48,4 @@ class Service
                 'message': message
             }
 
-angular.module('app').service 'socketService', ['$rootScope', '$log', '$window', Service]
+angular.module('app').service 'socketService', ['$rootScope', '$log', '$window', 'messageService', Service]

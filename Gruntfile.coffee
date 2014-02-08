@@ -86,6 +86,7 @@ module.exports = (grunt) ->
                     middleware: require './middleware'
                     open: true
                     port: 4999
+                    hostname: '*'
 
         # Copies directories and files from one location to another
         copy:
