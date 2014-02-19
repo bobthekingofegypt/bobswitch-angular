@@ -29,7 +29,11 @@ describe "Players service spec", ->
             { ready: true }
         ]
 
-        callbacks["game:state:start"]()
+        message = {
+            players: {}
+        }
+
+        callbacks["game:state:start"](message)
 
         expect(_.every playersService.players, (item) ->
             item.ready == false

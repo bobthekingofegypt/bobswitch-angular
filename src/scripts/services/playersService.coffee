@@ -5,6 +5,7 @@ class Service
 
         @socketService.on "game:state:start", @resetReadyFlags
         @socketService.on "game:state:update", @resetReadyFlags
+        @socketService.on "game:state:watch", @resetReadyFlags
 
         @socketService.on "players:listing", (players) =>
             for player in players
@@ -29,7 +30,6 @@ class Service
                 player.ready = true
 
     resetReadyFlags: (message) =>
-        console.log "running reset"
         for player in message.players
             for local_player in @players
                 if local_player.name == player.name
@@ -48,7 +48,6 @@ class Service
 
     reconnectedPlayer: (name) ->
         for player, i in @players
-            console.log(i)
             if player.name == name
                 ready = false
                 player.disconnected = false
@@ -56,7 +55,6 @@ class Service
 
     disconnectedPlayer: (name) ->
         for player, i in @players
-            console.log(i)
             if player.name == name
                 ready = false
                 player.disconnected = true
@@ -64,7 +62,6 @@ class Service
 
     removePlayer: (name) ->
         for player, i in @players
-            console.log(i)
             if player.name == name
                 @players.splice(i, 1)
                 break

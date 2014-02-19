@@ -19,6 +19,7 @@ class Controller
         @messageService.subscribe "connection-lost", @connectionLost
 
         @socketService.on "game:state:start", @start
+        @socketService.on "game:state:watch", @watch
         @socketService.on "game:player:response", @processResponse
         @socketService.on "game:state:update", @start
         
@@ -32,7 +33,8 @@ class Controller
             return 92 + (a.length * 18)
 
     signedIn: (name, parameters) =>
-        @$scope.showReadyButton = true
+        if not @$scope.showGame
+            @$scope.showReadyButton = true
 
     ready: ->
         @$scope.showReadyButton = false
@@ -98,6 +100,85 @@ class Controller
     processResponse: (message) =>
         console.log message
 
+    watch: (message) =>
+        @$scope.showReadyButton = false
+        @$scope.showFinishButton = false
+
+        if message.state == "finished"
+            @$scope.showReadyButton = true
+            @$scope.showGame = false
+        else
+            @$scope.showGame = true
+
+        numberOfPlayers = message.number_of_players
+
+        playerNames = message.players.slice()
+
+        for player, i in @$scope.players
+            @$scope.players[i] = {
+                name: null
+                count: 0
+                active: false
+            }
+
+        cards = []
+        for card in [0..playerNames[0].count-1]
+            cards.push {
+                name: "back"
+            }
+
+        @$scope.players[0] = {
+            name: playerNames[0].name,
+            count: playerNames[0].count,
+            active: false
+            cards: cards
+            wait: false
+        }
+
+        startingName = message.players[message.starting_player-1].name
+        @configureOtherPlayers numberOfPlayers, playerNames
+
+        topCard = message.top_card
+        @$scope.topCard = @cardName(topCard.suit, topCard.rank)
+
+        p.active = true for p in @$scope.players when p.name == startingName
+
+    configureOtherPlayers: (numberOfPlayers, playerNames) =>
+        if numberOfPlayers == 2
+            @$scope.players[2] = {
+                name: playerNames[1].name,
+                count: playerNames[1].count,
+                active: false
+            }
+        else if numberOfPlayers == 3
+            @$scope.players[1] = {
+                name: playerNames[1].name,
+                count: playerNames[1].count,
+                active: false
+            }
+            @$scope.players[2] = {
+                name: playerNames[2].name,
+                count: playerNames[2].count,
+                active: false
+            }
+        else
+            @$scope.players[1] = {
+                name: playerNames[1].name,
+                count: playerNames[1].count,
+                active: false
+            }
+            @$scope.players[2] = {
+                name: playerNames[2].name,
+                count: playerNames[2].count,
+                active: false
+            }
+            @$scope.players[3] = {
+                name: playerNames[3].name,
+                count: playerNames[3].count,
+                active: false
+            }
+
+
 
     start: (message) =>
         @$scope.showReadyButton = false
@@ -134,7 +215,6 @@ class Controller
                 count: 0
                 active: false
             }
-        console.log @$scope.players
 
         @$scope.players[0] = {
             name: @playersService.getName(),
@@ -155,42 +235,7 @@ class Controller
         else if message.state == "pick"
             @$scope.players[0].pick = startingName == @playersService.getName()
 
-
-
-        console.log(playerNames)
-        if numberOfPlayers == 2
-            @$scope.players[2] = {
-                name: playerNames[1].name,
-                count: playerNames[1].count,
-                active: false
-            }
-        else if numberOfPlayers == 3
-            @$scope.players[1] = {
-                name: playerNames[1].name,
-                count: playerNames[1].count,
-                active: false
-            }
-            @$scope.players[2] = {
-                name: playerNames[2].name,
-                count: playerNames[2].count,
-                active: false
-            }
-        else
-            @$scope.players[1] = {
-                name: playerNames[1].name,
-                count: playerNames[1].count,
-                active: false
-            }
-            @$scope.players[2] = {
-                name: playerNames[2].name,
-                count: playerNames[2].count,
-                active: false
-            }
-            @$scope.players[3] = {
-                name: playerNames[3].name,
-                count: playerNames[3].count,
-                active: false
-            }
+        @configureOtherPlayers numberOfPlayers, playerNames
 
         topCard = message.top_card
         @$scope.topCard = @cardName(topCard.suit, topCard.rank)

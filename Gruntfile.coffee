@@ -280,6 +280,8 @@ module.exports = (grunt) ->
                     captureTimeout: 15000
                     colors: true
                     files: [
+                        'dist/scripts/libs/jquery.js'
+                        'dist/scripts/libs/jquery-ui.js'
                         'dist/scripts/libs/angular.js'
                         'dist/scripts/libs/lodash.min.js'
                         'dist/scripts/libs/angular-animate.js'

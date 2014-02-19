@@ -12,6 +12,8 @@ class Controller
             @$log.info("Player added: " + name)
             @$scope.players = parameters.players
 
+        @$scope.players = @playersService.players
+
         @$scope.open = =>
             @modalInstance = $modal.open({
                 templateUrl: '/views/login-modal.html',
