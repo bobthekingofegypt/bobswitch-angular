@@ -3,7 +3,7 @@
     </div>
     <div ng-repeat="player in players track by $index" class="player">
         <img src="images/profile.png" />
-        <div class="player-name">{{ player.name }}<span class="ready-label" ng-show="player.disconnected">(disconnected)</span><span class="ready-label" ng-show="player.ready">(ready)</span></div>
+        <div class="player-name">{{ player.name }}<span class="disconnect-label" ng-show="player.disconnected">(disconnected)</span><span class="ready-label" ng-show="player.ready">(ready)</span></div>
         <span>Played: {{ player.played }}</span><span>Won: {{ player.won }}</span>
     </div>
     <form ng-show="lurker" ng-submit="open()">

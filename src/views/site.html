@@ -17,10 +17,10 @@
                     </div>
 
                     <div id="seatWait" ng-show="players[0].pick">
-                        <a id="ready-button" class="large button red" ng-click="controller.pick();">Pick</a>
+                        <a id="pick-button" class="large button red" ng-click="controller.pick();">Pick</a>
                     </div>
                     <div id="seatWait" ng-show="players[0].wait">
-                        <a id="ready-button" class="large button red" ng-click="controller.wait();">Wait</a>
+                        <a id="wait-button" class="large button red" ng-click="controller.wait();">Wait</a>
                     </div>
                     <div id="seatAName">
                         <img width="20" height="20" src="images/profile.png"/>
@@ -79,7 +79,7 @@
 
                 <div id="ready-view" ng-show="showFinishButton">
                     <h2>{{ winner }} wins!</h2>
-                    <a id="ready-button" class="large button green" ng-click="controller.ready();">Play Again?</a>
+                    <a id="finish-button" class="large button green" ng-click="controller.ready();">Play Again?</a>
                 </div>
                 <div id="ready-view" ng-show="showReadyButton">
                     <a id="ready-button" class="large button red" ng-click="controller.ready();">Ready?</a>
