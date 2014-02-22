@@ -379,7 +379,7 @@ module.exports = (grunt) ->
         ngTemplateCache:
             views:
                 files:
-                    '.temp/scripts/views.js': '.temp/**/*.html'
+                    '.temp/scripts/views.js': '.temp/views/*.html'
                 options:
                     trim: '.temp'
 

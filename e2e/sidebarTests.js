@@ -27,8 +27,8 @@ describe('player joining', function() {
         browser.driver.get('http://127.0.0.1:9433/clear');
         browser.sleep(100);
         browser2.sleep(100);
-        browser.get('http://127.0.0.1:4999/#/github');
-        browser2.get('http://127.0.0.1:4999/#/github');
+        browser.get('http://127.0.0.1:4999/#/room/bob');
+        browser2.get('http://127.0.0.1:4999/#/room/bob');
     });
 
     it('should have no players on startup', function() {

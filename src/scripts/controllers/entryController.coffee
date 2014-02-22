@@ -2,8 +2,6 @@ class Controller
     constructor: (@$scope, @$location, @$log, @socketService) ->
         
     joinroom: =>
-        console.log("BANANA")
-        console.log(@$scope.room)
         @$location.path('room/'+@$scope.room)
 
 

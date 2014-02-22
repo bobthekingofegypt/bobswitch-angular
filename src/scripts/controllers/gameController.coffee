@@ -1,6 +1,5 @@
 class Controller
     constructor: (@$scope, @$log, @playersService, @$modal, @$routeParams, @socketService, @messageService) ->
-        console.log @$routeParams
         @$scope.showReadyButton = false
         @$scope.showGame = false
 
@@ -99,7 +98,7 @@ class Controller
         }
     
     processResponse: (message) =>
-        console.log message
+        #no-op
 
     watch: (message) =>
         @$scope.showReadyButton = false

@@ -2,10 +2,10 @@ class Config
     constructor: ($routeProvider) ->
         $routeProvider.
         when('/room/:roomId', {
-            templateUrl: 'views/site.html',
+            templateUrl: '/views/site.html',
         }).
         when('/', {
-            templateUrl: 'views/entry.html',
+            templateUrl: '/views/entry.html',
         }).
         otherwise
             redirectTo: '/'
