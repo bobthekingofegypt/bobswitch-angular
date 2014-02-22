@@ -1,0 +1,35 @@
+<div ng-controller="entryController as controller" id="entry_screen">&nbsp;
+    <h1>Bobswitch</h1>
+    <div id="room-entry">Enter a room name to join&nbsp;&nbsp;
+        <input ng-model="room" type="text" />&nbsp;&nbsp;
+        <button class="btn btn-primary" ng-click="controller.joinroom()" value="Join">Join</button>
+    </div>
+    <div id="rules_holder">
+        <div id="rules">
+            <h2>RULES</h2>
+            <hr />
+            <div class="rule">
+                <img src="images/AC.png" />
+                The Ace can be played at any time there is not another trick card in play.  Playing an Ace allows you to change the suit to any suit of your choice.
+            </div>
+            <div class="rule">
+                <img src="images/2H.png" />
+                A two of any suit is a "sting" card, it requires the next player in line to either play a two, or pick up two.  If the next player plays a two then the total to be picked by the next again player increases by two.  This continues until a player cannot play a two.
+            </div>
+            <div class="rule">
+                <img src="images/4S.png" />
+                A four of any suit is a "sting" card, it requires the next player in line to either play a four, or pick up four.  If the next player plays a four then the total to be picked by the next again player increases by four.  This continues until a player cannot play a four.
+            </div>
+
+            <div class="rule">
+                <img src="images/8D.png" />
+                After an eight is played the next player either has to play an eight or wait.  Waiting causes the player to skip their turn.
+            </div>
+            <div class="rule">
+                <img src="images/JC.png" />
+                A jack causes the order of play to be reversed.  In one-on-one games a jack allows the player to play again.
+            </div>
+        </div>
+    </div>
+</div>
+

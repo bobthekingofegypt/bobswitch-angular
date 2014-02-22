@@ -1,5 +1,5 @@
 class Service
-    constructor: (@$rootScope, @$log, @$window, @messageService) ->
+    constructor: (@$rootScope, @$log, @$window, @$routeParams, @messageService) ->
         @listeners = {}
         @block = true
         @queue = []
@@ -45,7 +45,8 @@ class Service
             @sock.send angular.toJson {
                 'type': 'event',
                 'name': event,
+                'room': @$routeParams.roomId,
                 'message': message
             }
 
-angular.module('app').service 'socketService', ['$rootScope', '$log', '$window', 'messageService', Service]
+angular.module('app').service 'socketService', ['$rootScope', '$log', '$window', '$routeParams', 'messageService', Service]

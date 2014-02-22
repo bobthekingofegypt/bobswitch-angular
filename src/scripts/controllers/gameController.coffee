@@ -1,5 +1,6 @@
 class Controller
-    constructor: (@$scope, @$log, @playersService, @$modal, @socketService, @messageService) ->
+    constructor: (@$scope, @$log, @playersService, @$modal, @$routeParams, @socketService, @messageService) ->
+        console.log @$routeParams
         @$scope.showReadyButton = false
         @$scope.showGame = false
 
@@ -270,6 +271,7 @@ angular.module('app').controller 'gameController', [
     '$log',
     'playersService',
     '$modal',
+    '$routeParams',
     'socketService',
     'messageService',
     Controller

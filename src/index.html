@@ -42,7 +42,6 @@
 	</head>
 	<body ng-cloak class="ng-cloak">
 		<ng:view></ng:view>
-		<ng:include src="'/views/site.html'"></ng:include>
 
 		<% if (config.environment && config.environment === 'prod') { %>
 			<script src="<%= config.getHashedFile('./.temp/scripts/scripts.min.js', {trim: './.temp'}) %>"></script>
