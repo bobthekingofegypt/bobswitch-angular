@@ -1,5 +1,6 @@
 # bobswitch-angular 
-
+[![Build Status](https://travis-ci.org/bobthekingofegypt/bobswitch-angular.png?branch=master)](https://travis-ci.org/bobthekingofegypt/bobswitch-angular)
+[![Coverage Status](https://coveralls.io/repos/bobthekingofegypt/bobswitch-angular/badge.png?branch=master)](https://coveralls.io/r/bobthekingofegypt/bobswitch-angular?branch=master)
 ## About
 
 Bobswitch is an implementation of the simple card game switch and this is a font end created with angular that connects to the bobswitch-python socket server.
