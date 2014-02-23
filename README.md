@@ -2,7 +2,7 @@
 
 ## About
 
-Bobswitch is an implementation of the simple card game switch and this is a font end created with angular.
+Bobswitch is an implementation of the simple card game switch and this is a font end created with angular that connects to the bobswitch-python socket server.
 
 ## Compile bobswitch-angular 
 You have options.
