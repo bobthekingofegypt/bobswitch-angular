@@ -36,7 +36,8 @@ class Controller
             @$scope.shouldBeOpen = "true"
 
         @$scope.ok = =>
-            @modalInstance.close()
+            if @$scope.input.name and @$scope.input.name != ""
+                @modalInstance.close()
 
         @$scope.cancel = =>
             @modalInstance.dismiss()

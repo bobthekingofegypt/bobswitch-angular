@@ -1,7 +1,7 @@
 <div ng-controller="entryController as controller" id="entry_screen">&nbsp;
     <h1>Bobswitch</h1>
     <div id="room-entry">Enter a room name to join&nbsp;&nbsp;
-        <input ng-model="room" type="text" />&nbsp;&nbsp;
+        <input ng-model="room" ui-keypress="{13:'controller.joinroom()'}" type="text" />&nbsp;&nbsp;
         <button class="btn btn-primary" ng-click="controller.joinroom()" value="Join">Join</button>
     </div>
     <div id="rules_holder">
