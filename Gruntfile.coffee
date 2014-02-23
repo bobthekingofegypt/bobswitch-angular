@@ -302,7 +302,7 @@ module.exports = (grunt) ->
                         'progress'
                     ]
                     coverageReporter :
-                        type: 'html'
+                        type: 'lcov'
                         dir: 'test/coverage/'
                     preprocessors:
                         '**/*.coffee': 'coffee'
