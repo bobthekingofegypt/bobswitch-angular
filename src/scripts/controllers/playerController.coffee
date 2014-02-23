@@ -6,11 +6,15 @@ class Controller
         #input is used to store the name from the modal
         @$scope.input = {}
 
+        @$scope.showJoin = true
+
         @$scope.players = []
         
         @messageService.subscribe "player-added", (name, parameters) =>
             @$log.info("Player added: " + name)
             @$scope.players = parameters.players
+
+            @$scope.showJoin = @shouldShowJoin()
 
         @$scope.players = @playersService.players
 
@@ -29,6 +33,7 @@ class Controller
 
                 @$scope.shouldBeOpen = "false"
                 @$scope.lurker = false
+                @$scope.showJoin = @shouldShowJoin()
             , =>
                 @$log.info('Modal dismissed at: ' + new Date())
 
@@ -41,6 +46,19 @@ class Controller
 
         @$scope.cancel = =>
             @modalInstance.dismiss()
+
+    shouldShowJoin: =>
+        disconnected = false
+        for player in @$scope.players
+            if player.disconnected
+                disconnected = true
+                break
+
+        if not @$scope.lurker
+            return false
+        else
+            return disconnected ||
+                (@$scope.players.length < 4 && @$scope.lurker)
         
 
 angular.module('app').controller 'playerController', [
